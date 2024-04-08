@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #third party
     'rest_framework',
     'rest_framework_simplejwt',
+    'corsheaders',
     #our apps
     'modulo1',
     "accounts",
@@ -54,6 +55,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    #cors
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -149,6 +153,9 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-#setting custom user
+#Cors 
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+#setting custom user
 AUTH_USER_MODEL = "accounts.CustomUser"
