@@ -2,7 +2,7 @@
 
 
 from django.urls import path
-from .views import MyTokenObtainPairView , RegisterView ,deleteProfile ,updateProfile ,getProfile
+from .views import MyTokenObtainPairView , RegisterView ,deleteProfile ,updateProfile ,getProfile,list_users
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
@@ -13,5 +13,6 @@ urlpatterns = [
     path('profile/', getProfile, name='get_profile'),
     path('profile/update/', updateProfile, name='update_profile'),  
     path('profile/delete/', deleteProfile, name='delete_profile'),  # URL para eliminar el perfil
+    path('profile/allusers/',list_users, name='user-list'),
 
 ]

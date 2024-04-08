@@ -30,6 +30,13 @@ def getProfile(request):
     serializer = AllFieldsUserSerializer(user, many=False)  # Utiliza AllFieldsUserSerializer en lugar de UserSerializer
     return Response(serializer.data)
 
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def list_users(request):
+    queryset = CustomUser.objects.all()
+    serializer = AllFieldsUserSerializer(queryset, many=True)
+    return Response(serializer.data)
+
 @api_view(['PUT'])
 @permission_classes([IsAuthenticated])
 def updateProfile(request):
