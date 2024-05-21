@@ -20,7 +20,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class RegisterView(generics.CreateAPIView):
     queryset = CustomUser.objects.all()
     permission_classes = (AllowAny,)
-    serializer_class = UserSerializer
+    serializer_class = AllFieldsUserSerializer
 
 #api/profile  and api/profile/update
 @api_view(['GET'])
