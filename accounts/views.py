@@ -25,9 +25,13 @@ class RegisterView(generics.CreateAPIView):
 #api/profile  and api/profile/update
 @api_view(['GET'])
 @permission_classes([IsAuthenticated])
-def getProfile(request):
-    user = request.user
-    serializer = AllFieldsUserSerializer(user, many=False)  # Utiliza AllFieldsUserSerializer en lugar de UserSerializer
+def getProfile(request, userId):
+    try:
+        user = CustomUser.objects.get(id=userId)
+    except CustomUser.DoesNotExist:
+        return Response({'error': 'User not found'}, status=404)
+    
+    serializer = AllFieldsUserSerializer(user, many=False)
     return Response(serializer.data)
 
 @api_view(['GET'])
